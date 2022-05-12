@@ -13,7 +13,7 @@ sites = {
 
 distances = {}
 
-# Что то напиши, просто измени
+#  TODO здесь заполнение словаря
 
 print(distances)
 
