@@ -34,7 +34,7 @@ store = {
 # Рассчитать на какую сумму лежит каждого товара на складе
 # например для ламп
 
-lamps_cost = store[goods['Лампа']][0]['quantity'] * store[goods['Лампа']][0]['price']
+lamp_cost = store[goods['Лампа']][0]['quantity'] * store[goods['Лампа']][0]['price']
 # или проще (/сложнее ?)
 lamp_code = goods['Лампа']
 lamps_item = store[lamp_code][0]
@@ -49,17 +49,26 @@ print('Лампа -', lamps_quantity, 'шт, стоимость', lamps_cost, '�
 # WARNING для знающих циклы: БЕЗ циклов. Да, с переменными; да, неэффективно; да, копипаста.
 # Это задание на ручное вычисление - что бы потом понять как работают циклы и насколько с ними проще жить.
 
-# TODO здесь ваш код
+chair_code = goods['Стул']
+chairs_item = store[chair_code][0]
+chairs_quantity = chairs_item['quantity']
+chairs_price = chairs_item['price']
+chairs_cost = chairs_quantity * chairs_price
+print('Стул -', chairs_quantity, 'шт, стоимость', chairs_cost, 'грн')
 
-##########################################################################################
-# ВНИМАНИЕ! После того как __ВСЯ__ домашняя работа сделана и запушена на сервер,         #
-# нужно зайти в ЛМС (LMS - Learning Management System ) по адресу http://go.skillbox.ru  #
-# и оформить попытку сдачи ДЗ! Без этого ДЗ не будет проверяться!                        #
-# Как оформить попытку сдачи смотрите видео - https://youtu.be/qVpN0L-C3LU               #
-##########################################################################################
+table_code = goods['Стол']
+table_item = store[table_code][0]
+table_quantity = table_item['quantity']
+table_price = table_item['price']
+table_cost = table_quantity * chairs_price
+print('Стол -', table_quantity, 'шт, стоимость', table_cost, 'грн')
 
-
-
+sofa_code = goods['Диван']
+sofa_item = store[sofa_code][0]
+sofa_quantity = sofa_item['quantity']
+sofa_price = sofa_item['price']
+sofa_cost = sofa_quantity * sofa_price
+print('Диван -', sofa_quantity, 'шт, стоимость', sofa_cost, 'грн')
 
 
 

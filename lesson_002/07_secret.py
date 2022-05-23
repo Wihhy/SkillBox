@@ -24,6 +24,6 @@ secret_message = [
 first_word = secret_message[0][3]
 second_word = secret_message[1][9:13]
 third_word = secret_message[2][5:14:2]
-fourth_word = secret_message[3][7:12]
-fifth_word = secret_message[4][16:20]
+fourth_word = secret_message[3][12:6:-1]
+fifth_word = secret_message[4][20:15:-1]
 print(first_word, second_word, third_word, fourth_word, fifth_word)
