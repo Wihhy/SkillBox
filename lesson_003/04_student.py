@@ -11,4 +11,18 @@
 
 educational_grant, expenses = 10000, 12000
 
-# TODO здесь ваш код
+needed_money_for_year = 0
+educational_grant_for_year = educational_grant * 10
+i = 1
+while i < 10:
+    inflation = (expenses / 100) * 3
+    expenses = expenses + inflation
+    needed_money_for_year += expenses
+    i += 1
+credit = expenses - educational_grant
+print('Студенту нужно попросить', round(credit, 2), 'грн')
+# while cash < 0:
+#     needed_money += 100
+#     cash = cash + needed_money
+# print(needed_money)
+# cash = educational_grant - expenses
