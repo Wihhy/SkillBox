@@ -37,7 +37,7 @@ def bubble(point, step):
 #         bubble(point=point, step=10)
 
 # Нарисовать 100 пузырьков в произвольных местах экрана случайными цветами
-# TODO здесь ваш код
+
 for _ in range(100):
     point = sd.random_point()
     bubble(point=point, step=4)
