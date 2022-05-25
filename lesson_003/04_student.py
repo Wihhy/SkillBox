@@ -19,6 +19,5 @@ while i < 10:
     expenses = expenses + inflation
     needed_money_for_year += expenses
     i += 1
-credit = expenses - educational_grant
+credit = needed_money_for_year - educational_grant_for_year
 print('Студенту нужно попросить', round(credit, 2), 'грн')
-

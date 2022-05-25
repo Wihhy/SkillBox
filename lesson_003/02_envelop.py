@@ -20,7 +20,9 @@ paper_x, paper_y = 8, 6
 # paper_x, paper_y = 9, 11
 # (просто раскоментировать нужную строку и проверить свой код)
 
-if envelop_x > paper_x and envelop_y > paper_y:
+if envelop_x >= paper_x and envelop_y >= paper_y:
+    print('Лист поместится в конверт')
+elif envelop_y >= paper_x and envelop_x >= paper_y:
     print('Лист поместится в конверт')
 else:
     print('Лист не поместится в конверт')
@@ -31,11 +33,11 @@ else:
 #
 # Определить, пройдет ли кирпич через отверстие (грани кирпича параллельны сторонам отверстия)
 
-# hole_x, hole_y = 8, 9
+hole_x, hole_y = 8, 9
 # brick_x, brick_y, brick_z = 11, 10, 2
 # brick_x, brick_y, brick_z = 11, 2, 10
 # brick_x, brick_y, brick_z = 10, 11, 2
-# brick_x, brick_y, brick_z = 10, 2, 11
+brick_x, brick_y, brick_z = 10, 2, 11
 # brick_x, brick_y, brick_z = 2, 10, 11
 # brick_x, brick_y, brick_z = 2, 11, 10
 # brick_x, brick_y, brick_z = 3, 5, 6
@@ -51,5 +53,16 @@ else:
 # brick_x, brick_y, brick_z = 3, 6, 11
 # brick_x, brick_y, brick_z = 3, 11, 6
 # (просто раскоментировать нужную строку и проверить свой код)
-
-# TODO здесь ваш код
+# x1 = 8 y1 = 9
+if brick_x <= hole_x and brick_y <= hole_y:  # x1 = x2 and y1 = y2
+    print('Кирпичик поместится ')
+elif brick_x <= hole_y and brick_y <= hole_x:  # x1 = y2 and y1 = x2
+    print('Кирпичик поместится ')
+elif brick_x <= hole_x and brick_z <= hole_y:  # x1 = x2 and z1 = y2
+    print('Кирпичик поместится ')
+elif brick_x <= hole_y and brick_z <= hole_x:  # x1 = y2 and z1 = x2
+    print('Кирпичик поместится ')
+elif brick_y <= hole_x and brick_z <= hole_y:  # y1 = x2 and z1 = y2
+    print('Кирпичик поместится ')
+else:
+    print('Кирпичик не поместится(')
