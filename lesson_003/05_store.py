@@ -45,8 +45,15 @@ store = {
 #         подсчет количества товара
 #         подсчет стоимости товара
 #     вывод на консоль количества и стоимости товара на складе
-
-# TODO здесь ваш код
+for i in goods:
+    item = (goods[i])
+    store_list = list(store[item])
+    item_cost = 0
+    for store_list_cycle in store_list:
+        amount = store_list_cycle['quantity']
+        price = store_list_cycle['price']
+        item_cost += amount * price
+    print(i, '-', amount, 'шт, стоимость', item_cost, 'грн')
 
 
 
