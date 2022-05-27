@@ -40,7 +40,7 @@ def bubble(point, step):
 
 for _ in range(100):
     point = sd.random_point()
-    bubble(point=point, step=4)
+    bubble(point=point, step=3)
 sd.pause()
 
 
