@@ -5,7 +5,7 @@ import simple_draw as sd
 
 # Нарисовать стену из кирпичей. Размер кирпича - 100х50
 # Использовать вложенные циклы for
-sd.resolution = (1200, 800)
+# sd.resolution = (1200, 800)
 start_x = 0
 start_y = 0
 end_x = 100
