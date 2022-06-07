@@ -18,6 +18,8 @@ point = sd.get_point(300, 300)
 # v3.draw()
 
 # определить функцию рисования треугольника из заданной точки с заданным наклоном
+
+
 def triangle(point, angle=0):
     v1 = sd.get_vector(start_point=point, angle=angle, length=200, width=3)
     v1.draw()
