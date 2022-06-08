@@ -14,6 +14,7 @@ import simple_draw as sd
 # и константы COLOR_RED, COLOR_ORANGE, COLOR_YELLOW, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PURPLE
 # Результат решения см lesson_004/results/exercise_02_global_color.jpg
 
+
 color_dict = \
     {0: 'COLOR_RED',
      1: 'COLOR_ORANGE',
