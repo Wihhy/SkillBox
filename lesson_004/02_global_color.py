@@ -14,30 +14,74 @@ import simple_draw as sd
 # и константы COLOR_RED, COLOR_ORANGE, COLOR_YELLOW, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PURPLE
 # Результат решения см lesson_004/results/exercise_02_global_color.jpg
 
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
+orange = (255, 127, 0)
+yellow = (255, 255, 0)
+cyan = (0, 255, 255)
+blue = (0, 0, 255)
+purple = (255, 0, 255)
+dark_yellow = (127, 127, 0)
+green = (0, 127, 0)
+dark_cyan = (0, 127, 127)
+dark_blue = (0, 0, 127)
+dark_purple = (127, 0, 127)
 
-color_dict = \
-    {0: 'COLOR_RED',
-     1: 'COLOR_ORANGE',
-     2: 'COLOR_YELLOW',
-     3: 'COLOR_GREEN',
-     4: 'COLOR_CYAN',
-     5: 'COLOR_BLUE',
-     6: 'COLOR_PURPLE'
-     }
-print(color_dict,)
+color_dict = {
+    **{0: red},
+    **{1: green},
+    **{2: white},
+    **{3: black},
+    **{4: orange},
+    **{5: yellow},
+    **{6: cyan},
+    **{7: blue},
+    **{8: purple},
+    **{9: dark_yellow},
+    **{10: dark_cyan},
+    **{11: dark_blue},
+    **{12: dark_purple}
+}
+
+color_list = [
+    '0: red',
+    '1: green',
+    '2: white',
+    '3: black',
+    '4: orange',
+    '5: yellow',
+    '6: cyan',
+    '7: blue',
+    '8: purple',
+    '9: dark_yellow',
+    '10: dark_cyan',
+    '11: dark_blue',
+    '12: dark_purple',
+]
+
+dot = sd.get_point(300, 300)
+
+print(color_list)
+
 print('Введите номер желаемого цвета:')
 color_input = int(input())
-dot = sd.get_point(300, 300)
-i = 0
-for i in color_dict:
-    if i == color_input:
-        color = color_dict[i]
-        i += 1
+
+print('Введите желаемое количество углов в фигуре:')
+number_of_corners = int(input())
+if number_of_corners > 0:
+    print('Введите угол в желаемой фигуре:')
+    angle_value = float(input())
+
+print('Введите длинну сторон в желаемо фигуре:')
+side_length = float(input())
 
 
-def draw(point, length, range_cycle, angle_value, color):
+def draw(point, length=side_length, number_of_corners=number_of_corners, angle_value=angle_value, color=yellow):
     angle = 0
-    for cycle in range(range_cycle):
+    if number_of_corners == 0:
+        sd.circle(center_position=point, radius=side_length, color=color, width=4)
+    for cycle in range(number_of_corners):
         v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
         point = v1.end_point
         angle += angle_value
@@ -45,5 +89,10 @@ def draw(point, length, range_cycle, angle_value, color):
         v1.draw()
 
 
-draw(point=dot, length=100, range_cycle=4, angle_value=90, color=color)
+for i in color_dict:
+    if i == color_input:
+        color = color_dict[i]
+        draw(point=dot, length=side_length, number_of_corners=number_of_corners, angle_value=angle_value, color=color)
+
+
 sd.pause()
