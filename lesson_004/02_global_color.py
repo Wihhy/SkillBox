@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import simple_draw as sd
-
+from pprint import pprint
 # Добавить цвет в функции рисования геом. фигур. из упр lesson_004/01_shapes.py
 # (код функций скопировать сюда и изменить)
 # Запросить у пользователя цвет фигуры посредством выбора из существующих:
@@ -62,7 +62,7 @@ color_list = [
 
 dot = sd.get_point(300, 300)
 
-print(color_list)
+pprint(color_list)
 
 print('Введите номер желаемого цвета:')
 color_input = int(input())

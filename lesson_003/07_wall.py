@@ -5,7 +5,7 @@ import simple_draw as sd
 
 # Нарисовать стену из кирпичей. Размер кирпича - 100х50
 # Использовать вложенные циклы for
-# sd.resolution = (1200, 800)
+sd.resolution = (1200, 700)
 start_x = 0
 start_y = 0
 end_x = 100
@@ -19,7 +19,6 @@ for j in range(12):
     start_y += 50
 
     for i in range(6):
-        # break
         vertical_start_point = sd.get_point(x=start_x + 100, y=start_y + 50)
         vertical_end_point = sd.get_point(x=start_x + 100, y=start_y)
         sd.line(start_point=vertical_start_point, end_point=vertical_end_point, color=sd.COLOR_YELLOW, width=2)
