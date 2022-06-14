@@ -1,42 +1,14 @@
-                                              #АРИФМЕТИЧЕСКИЕ ОПЕРАТОРЫ
-total = a + b  # Сумма
-diff = a - b  # Разница
-prod = a * b  # Умножение
-div1 = a / b  # Деление
-div2 = a // b  # Целочисленное деление
-mod = a % b  # Остаток от деления
-exp = a ** b  # Возведение в степень
+import simple_draw as sd
+sd.resolution = (1500, 800)
+x = 0
+y = 0
+brick_length = 50
+brick_height = 25
 
-"""
-Тройные кавычки  # Используются для написания многострочного комментария/кода
-"""
+first_roof_point = sd.get_point(x=x - brick_length * 0.5, y=y + brick_height * 12)
+second_roof_point = sd.get_point(x=x + brick_length * 6, y=y + brick_height * 12)
+thirst_roof_point = sd.get_point(x=x + brick_length * 3, y=y + brick_height * 16)
+roof = [first_roof_point, second_roof_point, thirst_roof_point]
+sd.polygon(roof, width=0, color=sd.COLOR_DARK_ORANGE)
 
-# Индексация строк происходит в [] скобках, если нужен промежуток, то: [start:stop:step],
-# если нужно развернуть промежуток, то начало и конец указываются рассчитываясь с конца, а шаг = -1
-
-                                              # ЦИКЛЫ
-while  # Цикл "пока", выполняется пока условие выполняется (True)
-
-    break  # безусловная остановка цикла
-
-    continue  # пропуск остатка цикла и возвращение обратно к проверке условия выполнения цикла
-
-for  # Цикл используется: for <переменная цикла> in <список>. Используется для поиска из списков, как пример.
-
-    break  # безусловная остановка цикла
-
-    continue  # пропуск остатка цикла и возвращение обратно к проверке условия выполнения цикла
-                                              # ФУНКЦИИ
-    # def <имя_функции>(...):
-    #     <блок кода>
-
-in  # функция вхождения
-
-enumerate()  # Выдаёт вместо списка пары значений (номер, елемент).
-  #  Пример:
-            for i, animal in enumerate(zoo_pets):
-                print(i, animal)
-range()  # генерация целочисленных последовательностей (start:stop:step)
-  # Пример:
-            for i in range(100, 600, 50):
-                print(i)
+sd.pause()

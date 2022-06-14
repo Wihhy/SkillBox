@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# (цикл for)
 import simple_draw as sd
 
-# Нарисовать стену из кирпичей. Размер кирпича - 100х50
-# Использовать вложенные циклы for
 sd.resolution = (1200, 700)
+
 start_x = 0
 start_y = 0
 
+first_roof_point = sd.get_point(x=start_x, y=start_y)
+second_roof_point = sd.get_point(x=start_x + , y=start_y + brick_height * 12)
+thirst_roof_point = sd.get_point(x=start_x + brick_length * 3, y=start_y + brick_height * 16)
+roof = [first_roof_point, second_roof_point, thirst_roof_point]
+sd.lines(roof, closed=True, width=0, color=sd.COLOR_YELLOW)
 
 for j in range(12):
     start_point = sd.get_point(x=0, y=start_y)
