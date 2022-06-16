@@ -42,5 +42,23 @@
 # Движок игры реализует только саму функциональность игры.
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
-
-# TODO здесь ваш код...
+import mastermind_engine as engine
+print(f'Привет, поиграем?\nВведи "y" если хочешь поиграть или "n" если не хочешь!')
+while True:
+    answer = input()
+    if answer == 'n':
+        quit(print('Пока!'))
+    elif answer == 'y':
+        guessed_number = engine.guessing_number()
+        print(f'Число загадано, угадывай!')
+        while True:
+            user_input = int(input())
+            animals = engine.check_number(guessed_number=guessed_number, checked_number=user_input)
+            print(f'Быки: {animals["bulls"]}, Коровы: {animals["cows"]}')
+            print(f'                                                                                                                                                                                        {guessed_number}')
+            if animals["bulls"] == 4:
+                print('Урааааа, ты победил, ещё разочек?)\nВведи "y" если хочешь сыграть или "n" если не хочешь!')
+                break
+    else:
+        print('Я тебя не понимаю(((')
+        continue
