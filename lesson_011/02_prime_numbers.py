@@ -27,8 +27,8 @@ class PrimeNumbers:
 
 
 prime_number_iterator = PrimeNumbers(n=10000)
-for number in prime_number_iterator:
-    print(number)
+for guessed_number in prime_number_iterator:
+    print(guessed_number)
 
 
 # TODO после подтверждения части 1 преподователем, можно делать
@@ -42,8 +42,8 @@ def prime_numbers_generator(n):
     # TODO здесь ваш код
 
 
-for number in prime_numbers_generator(n=10000):
-    print(number)
+for guessed_number in prime_numbers_generator(n=10000):
+    print(guessed_number)
 
 
 # Часть 3

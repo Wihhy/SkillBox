@@ -72,13 +72,13 @@ def perky(param):
 
 logging.basicConfig(filename='errors.log', level=logging.INFO)
 
-number = 42
+guessed_number = 42
 try:
     logging.info('Посмотрим как у него получится...')
-    perky(number)
+    perky(guessed_number)
     logging.info('Он смог!')
 except Exception:
-    logging.exception(f'Дерзкий не справился c {number}')
+    logging.exception(f'Дерзкий не справился c {guessed_number}')
 
 # В больших программах практически всегда необходимо разделять сообщения в логах
 # по некоторому признаку - типы сообщений, места возникновения, используемый модуль, етс
@@ -92,13 +92,13 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 fh.setFormatter(formatter)
 log.addHandler(fh)
 
-number = 42
+guessed_number = 42
 try:
     log.info('Посмотрим как у него получится...')
-    perky(number)
+    perky(guessed_number)
     log.info('Он смог!')
 except Exception:
-    log.exception(f'Дерзкий не справился c {number}')
+    log.exception(f'Дерзкий не справился c {guessed_number}')
 
 
 # посмотрим как это работает в проекте
@@ -143,13 +143,13 @@ def perky(param):
     return param / 0
 
 
-number = 42
+guessed_number = 42
 try:
     log.info('Посмотрим как у него получится...')
-    perky(number)
+    perky(guessed_number)
     log.info('Он смог!')
 except Exception:
-    log.exception(f'Дерзкий не справился c {number}')
+    log.exception(f'Дерзкий не справился c {guessed_number}')
 
 # На один логгер можно повесить несклько хэндлеров,
 # полный список см https://docs.python.org/3.5/howto/logging.html#useful-handlers

@@ -187,10 +187,10 @@ print(f'Округление 3.5 банковским методом - {round(3.
 # round-floor - округление к минус-бесконечности
 
 # Примеры:
-number = Decimal("10.025")
-print(f'Банковский метод - {number.quantize(Decimal("1.00"), ROUND_HALF_EVEN)}')
-print(f'Арифметический метод - {number.quantize(Decimal("1.00"), ROUND_HALF_UP)}')
-print(f'Метод "обрезания" чисел без округления {number.quantize(Decimal("1.00"), ROUND_FLOOR)}')
+guessed_number = Decimal("10.025")
+print(f'Банковский метод - {guessed_number.quantize(Decimal("1.00"), ROUND_HALF_EVEN)}')
+print(f'Арифметический метод - {guessed_number.quantize(Decimal("1.00"), ROUND_HALF_UP)}')
+print(f'Метод "обрезания" чисел без округления {guessed_number.quantize(Decimal("1.00"), ROUND_FLOOR)}')
 
 # Итог:
 # набор различных методов округления в Decimals позволяет подобрать решение

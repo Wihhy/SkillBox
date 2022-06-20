@@ -123,8 +123,8 @@ print(f'Пример записи: {list_of_tasks[0]}')
 # Определить количесвто уникальных пользователей.
 
 unique_set_of_users = set()
-for number in range(number_of_tasks):
-    unique_set_of_users.add(list_of_tasks[number]["userId"])
+for guessed_number in range(number_of_tasks):
+    unique_set_of_users.add(list_of_tasks[guessed_number]["userId"])
 print(f'Количество уникальных пользователей: {len(unique_set_of_users)}')
 
 # Задача 2:
