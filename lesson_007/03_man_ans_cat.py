@@ -2,6 +2,7 @@
 
 from random import randint
 
+
 # Доработать практическую часть урока lesson_007/python_snippets/08_practice.py
 
 # Необходимо создать класс кота. У кота есть аттрибуты - сытость и дом (в котором он живет).
@@ -25,7 +26,142 @@ from random import randint
 
 # Человеку и коту надо вместе прожить 365 дней.
 
-# TODO здесь ваш код
+
+class House:
+
+    def __init__(self):
+        self.dirt = 0
+        self.bowl_for_food = 0
+        self.cat_food = 20
+        self.human_food = 10
+
+
+class Cat:
+
+    def __init__(self, name):
+        self.satiety = 10
+        self.name = name
+
+    def eat(self):
+        if house.cat_food >= 20:
+            _food = randint(8, 12)
+            self.satiety += _food
+            house.bowl_for_food -= _food
+            house.dirt += _food
+            print(f'{self.name} поел')
+        else:
+            print(f'Еды у {self.name} нет')
+
+    def sleep(self):
+        _hanger = randint(4, 8)
+        self.satiety -= _hanger
+        print(f'{self.name} весь день спал')
+
+    def play(self):
+        self.satiety -= randint(4, 8)
+        house.dirt += randint(8, 12)
+        print(f'{self.name} драл обои')
+
+    def act(self):
+        if self.satiety <= 0:
+            print(f'{self.name} умер..')
+            quit()
+        else:
+            dice = randint(0, 4)
+            if self.satiety < 10:
+                self.eat()
+            elif dice == 2:
+                self.play()
+            elif dice == 0:
+                self.eat()
+            else:
+                self.sleep()
+
+    def __str__(self):
+        return f'Я {self.name}, сытость - {self.satiety}'
+
+
+class Human:
+
+    def __init__(self, name):
+        self.money = 50
+        self.satiety = 10
+        self.name = name
+
+    def eat(self):
+        if house.human_food >= 1:
+            _food = randint(8, 12)
+            self.satiety += _food
+            house.human_food -= _food
+            house.dirt += randint(2, 4)
+            print(f'{self.name} поел')
+        else:
+            print(f'Еды у {self.name} нет')
+
+    def work(self):
+        self.money += 60
+        self.satiety -= 15
+        print(f'{self.name} сходил на работу')
+
+    def clean(self):
+        house.dirt -= 30
+        self.satiety -= randint(6, 10)
+        print(f'{self.name} убрался дома')
+
+    def shopping_forself(self):
+        house.human_food += 50
+        self.money -= 40
+        self.satiety -= randint(3, 5)
+        print(f'{self.name} сходил в магазин по еду себе')
+
+    def shopping_for_cat(self):
+        house.cat_food += 30
+        self.money -= 30
+        self.satiety -= randint(3, 5)
+        print(f'{self.name} сходил в магазин по еду коту')
+
+    def __str__(self):
+        return f'Я {self.name}, сытость - {self.satiety}, деньги - {self.money}'
+
+    def play(self):
+        self.satiety -= randint(5, 15)
+        print(f'{self.name} играл весь день')
+
+    def act(self):
+        if self.satiety <= 0:
+            print(f'{self.name} умер...')
+            quit()
+        dice = randint(1, 6)
+        if self.satiety < 20:
+            self.eat()
+        elif house.dirt > 50:
+            self.clean()
+        elif house.human_food < 30:
+            self.shopping_forself()
+        elif house.cat_food < 30:
+            self.shopping_for_cat()
+        elif self.money < 50:
+            self.work()
+        elif dice == 1:
+            self.work()
+        elif dice == 2:
+            self.eat()
+        else:
+            self.play()
+
+
+house = House()
+dimok = Cat(name='Димок')
+masyanya = Human(name='Масяня')
+# viktor = Cat(name='Виктор')
+# avgustii = Cat(name='Августий')
+
+for day in range(1, 366):
+    print('================ день {} =================='.format(day))
+    dimok.act()
+    masyanya.act()
+    # viktor.act()
+    # avgustii.act()
 
 # Усложненное задание (делать по желанию)
 # Создать несколько (2-3) котов и подселить их в дом к человеку.
