@@ -157,7 +157,7 @@ masyanya = Human(name='Масяня')
 # avgustii = Cat(name='Августий')
 
 for day in range(1, 366):
-    print('================ день {} =================='.format(day))
+    print(f'================ день {day} ==================')
     dimok.act()
     masyanya.act()
     # viktor.act()

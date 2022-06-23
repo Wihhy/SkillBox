@@ -19,6 +19,7 @@
 #   print(Water(), '+', Air(), '=', Water() + Air())
 #   print(Fire(), '+', Air(), '=', Fire() + Air())
 
+
 class Lava:
 
     def __init__(self):
