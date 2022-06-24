@@ -45,59 +45,98 @@ from random import randint
 class House:
 
     def __init__(self):
-        pass
+        self.money = 100
+        self.food = 50
+        self.dirt = 0
+
+    def __str__(self):
+        return f'В доме {self.money} денег, {self.food} еды, {self.dirt} грязи'
 
 
 class Husband:
 
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
+        self.satiety = 30
+        self.happiness = 100
 
     def __str__(self):
         return super().__str__()
 
     def act(self):
-        pass
+        if self.satiety <= 30:
+            self.eat()
+        elif home.money <= 150:
+            self.work()
+        else:
+            self.gaming()
 
     def eat(self):
-        pass
+        _food = randint(15, 30)
+        self.satiety += _food
+        home.food -= _food
+        cprint(f'Батя похавал', color='yellow')
 
     def work(self):
-        pass
+        self.satiety -= 10
+        home.money += 150
+        cprint(f'Батя сходил на работу', color='blue')
 
     def gaming(self):
-        pass
+        self.satiety -= 10
+        self.happiness += 20
+        cprint(f'Батя ебашил в дотку', color='green')
 
 
 class Wife:
 
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
+        self.satiety = 30
+        self.happiness = 100
 
     def __str__(self):
         return super().__str__()
 
     def act(self):
-        pass
+        if self.satiety <= 30:
+            self.eat()
+        elif home.dirt >= 100:
+            self.clean_house()
+        elif home.money >= 500:
+            self.buy_fur_coat()
+        else:
+            self.gaming()
 
     def eat(self):
-        pass
+        _food = randint(10, 25)
+        self.satiety += _food
+        home.food -= _food
+        cprint(f'Мать покушала', color='yellow')
 
     def shopping(self):
-        pass
+        home.money -= 100
+        home.food += 100
+        self.satiety -= 10
+        cprint(f'Мать сходила в магаз', color='white')
 
     def buy_fur_coat(self):
-        pass
+        home.money -= 350
+        self.happiness += 60
+        self.satiety -= 10
+        cprint(f'Мать прикупила пальто', color='red')
 
     def clean_house(self):
-        pass
+        home.dirt -= 100
+        self.satiety -= 10
+
 
 
 home = House()
 serge = Husband(name='Сережа')
 masha = Wife(name='Маша')
 
-for day in range(365):
+for day in range(1, 366):
     cprint('================== День {} =================='.format(day), color='red')
     serge.act()
     masha.act()
