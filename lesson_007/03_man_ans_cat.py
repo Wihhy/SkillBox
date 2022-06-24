@@ -97,6 +97,7 @@ class Human:
             print(f'{self.name} поел')
         else:
             print(f'Еды у {self.name} нет')
+            self.shopping_forself()
 
     def work(self):
         self.money += 60
@@ -109,14 +110,14 @@ class Human:
         print(f'{self.name} убрался дома')
 
     def shopping_forself(self):
-        house.human_food += 50
+        house.human_food += 80
         self.money -= 40
         self.satiety -= randint(3, 5)
         print(f'{self.name} сходил в магазин по еду себе')
 
     def shopping_for_cat(self):
-        house.cat_food += 30
-        self.money -= 30
+        house.cat_food += 80
+        self.money -= 40
         self.satiety -= randint(3, 5)
         print(f'{self.name} сходил в магазин по еду коту')
 
@@ -134,7 +135,7 @@ class Human:
         dice = randint(1, 6)
         if self.satiety < 20:
             self.eat()
-        elif house.dirt > 50:
+        elif house.dirt > 80:
             self.clean()
         elif house.human_food < 30:
             self.shopping_forself()
@@ -151,17 +152,17 @@ class Human:
 
 
 house = House()
-dimok = Cat(name='Димок')
 masyanya = Human(name='Масяня')
-# viktor = Cat(name='Виктор')
-# avgustii = Cat(name='Августий')
+dimok = Cat(name='кот Дымок')
+viktor = Cat(name='кот Виктор')
+avgustii = Cat(name='кот Августий')
 
 for day in range(1, 366):
     print(f'================ день {day} ==================')
-    dimok.act()
     masyanya.act()
-    # viktor.act()
-    # avgustii.act()
+    dimok.act()
+    viktor.act()
+    avgustii.act()
 
 # Усложненное задание (делать по желанию)
 # Создать несколько (2-3) котов и подселить их в дом к человеку.
