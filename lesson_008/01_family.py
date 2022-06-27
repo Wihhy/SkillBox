@@ -50,6 +50,7 @@ class House:
         self.dirt = 0
         self.cat_food = 30
 
+
     def __str__(self):
         return f'В доме {self.money} денег, {self.food} еды, {self.dirt} грязи'
 
@@ -60,12 +61,19 @@ class Husband:
         self.name = name
         self.satiety = 30
         self.happiness = 100
+        self.father_play = 0
+        self.father_eat = 0
+        self.father_work = 0
+        self.father_pet_cat = 0
 
     def __str__(self):
-        return f'Батя: сытость - {self.satiety}, счастье - {self.happiness}'
+        return f'Батя {self.name}: сытость - {self.satiety}, счастье - {self.happiness}'
 
     def act(self):
-        if self.happiness <= 10:
+        if self.satiety <= 0:
+            cprint('Помер от голода')
+            quit()
+        elif self.happiness <= 10:
             print(f'Повесился от грусти(')
         elif self.satiety <= 30:
             self.eat()
@@ -78,36 +86,49 @@ class Husband:
         _food = randint(15, 30)
         self.satiety += _food
         home.food -= _food
+        self.father_eat += 1
         cprint(f'Батя похавал', color='yellow')
 
     def work(self):
         self.satiety -= 10
         home.money += 150
+        self.father_work += 1
         cprint(f'Батя сходил на работу', color='blue')
 
     def gaming(self):
         self.satiety -= 10
         self.happiness += 20
+        self.father_play += 1
         cprint(f'Батя ебашил в дотку', color='green')
 
     def pet_the_cet(self):
         self.happiness += 5
         self.satiety -= 10
         cprint('Котик лащился к бате и он его погладил', color='green')
+        self.father_pet_cat += 1
 
 
 class Wife:
 
     def __init__(self, name):
+        self.mom_cleans = 0
+        self.mom_coats = 0
         self.name = name
         self.satiety = 30
         self.happiness = 100
+        self.mom_rest = 0
+        self.mom_eat = 0
+        self.mom_shop = 0
+        self.mom_pet_cat = 0
 
     def __str__(self):
-        return f'Мать: сытость - {self.satiety}, счастье - {self.happiness}'
+        return f'Мать {self.name}: сытость - {self.satiety}, счастье - {self.happiness}'
 
     def act(self):
-        if self.happiness <= 10:
+        if self.satiety <= 0:
+            cprint('Померла от голода')
+            quit()
+        elif self.happiness <= 10:
             print(f'Повесилась от грусти(')
         elif self.satiety <= 30:
             self.eat()
@@ -128,36 +149,43 @@ class Wife:
         _food = randint(10, 25)
         self.satiety += _food
         home.food -= _food
+        self.mom_eat += 1
         cprint(f'Мать покушала', color='yellow')
 
     def shopping_forself(self):
         home.money -= 100
         home.food += 100
         self.satiety -= 10
+        self.mom_shop += 1
         cprint(f'Мать сходила в магаз по хавку', color='magenta')
 
     def shopping_for_cat(self):
         home.money -= 100
         home.cat_food += 100
         self.satiety -= 10
+        self.mom_shop += 1
         cprint(f'Мать сходила в магаз по хавку для кота', color='magenta')
 
     def buy_fur_coat(self):
         home.money -= 350
         self.happiness += 60
         self.satiety -= 10
+        self.mom_coats += 1
         cprint(f'Мать прикупила пальто', color='red')
 
     def clean_house(self):
         home.dirt -= 100
         self.satiety -= 10
+        self.mom_cleans += 1
 
     def rest(self):
         self.satiety -= 10
+        self.mom_rest += 1
 
     def pet_the_cet(self):
         self.happiness += 5
         self.satiety -= 10
+        self.mom_pet_cat += 1
         cprint('Котик лащился к матери и она его погладила', color='green')
 
 
@@ -203,15 +231,19 @@ class Wife:
 class Cat:
 
     def __init__(self, name):
+        self.cat_sleep = 0
+        self.cat_play = 0
+        self.cat_eat = 0
         self.name = name
         self.satiety = 10
 
     def __str__(self):
-        return f'Котяра: сытость - {self.satiety}'
+        return f'Котяра {self.name}: сытость - {self.satiety}'
 
     def act(self):
         if self.satiety <= 0:
             print('Кот сдох')
+            quit()
         elif self.satiety <= 10:
             self.eat()
         else:
@@ -231,15 +263,18 @@ class Cat:
         _food = randint(5, 10)
         home.cat_food -= _food
         self.satiety += _food * 2
+        self.cat_eat += 1
         cprint(f'Котяра похавал', color='yellow')
 
     def sleep(self):
         self.satiety -= 10
         cprint(f'Котяра дрых весь день', color='grey')
+        self.cat_sleep += 1
 
     def play(self):
         self.satiety -= 10
         home.dirt += 5
+        self.cat_play += 1
         cprint(f'Котяра подрал все обои', color='red')
 
 
@@ -257,16 +292,19 @@ class Cat:
 class Child:
 
     def __init__(self, name):
+        self.child_sleep = 0
+        self.child_eat = 0
         self.name = name
         self.satiety = 20
         self.happiness = 100
 
     def __str__(self):
-        return f'Ребёнок: сытость - {self.satiety}'
+        return f'Ребёнок {self.name}: сытость - {self.satiety}'
 
     def act(self):
         if self.satiety <= 0:
-            print('Малой откинулся')
+            print('Малой откинулся от голода')
+            quit()
         elif self.satiety <= 10:
             self.eat()
         else:
@@ -281,14 +319,12 @@ class Child:
         home.cat_food -= _food
         self.satiety += _food
         cprint(f'Малой похавал', color='yellow')
+        self.child_eat += 1
 
     def sleep(self):
         self.satiety -= randint(4, 8)
         cprint(f'Малой проспал весь день', color='white')
-
-
-# TODO после реализации второй части - отдать на проверку учителем две ветки
-
+        self.child_sleep += 1
 
 ######################################################## Часть третья
 #
@@ -302,7 +338,7 @@ serge = Husband(name='Сережа')
 masha = Wife(name='Маша')
 kolya = Child(name='Коля')
 murzik = Cat(name='Мурзик')
-
+dimok = Cat(name='Дымок')
 for day in range(1, 366):
     cprint('================== День {} =================='.format(day), color='red')
     serge.happiness -= 5
@@ -311,10 +347,33 @@ for day in range(1, 366):
     masha.act()
     kolya.act()
     murzik.act()
+    dimok.act()
     cprint(serge, color='cyan')
     cprint(masha, color='cyan')
     cprint(kolya, color='cyan')
     cprint(murzik, color='cyan')
+    cprint(dimok, color='cyan')
+    incident_probability = randint(1, 18)
+    if incident_probability == 3:
+        home.money = home.money // 2
+        cprint('МИНУС БАБОСИКИ!!!', color='red')
+    elif incident_probability == 5:
+        home.food = home.food // 2
+        home.cat_food = home.cat_food // 2
+        cprint('МИНУС ХАВКА!!!', color='red')
+print(f'Батя за год:\n'
+      f'Играл {serge.father_play} раз, ходил на работу {serge.father_work} раз,'
+      f' ел {serge.father_eat} раз, гладил кота {serge.father_pet_cat} раз\n'
+      f'Мать за год:\n'
+      f'Ела {masha.mom_eat} раз, ходила за покупками {masha.mom_shop} раз,'
+      f' гладила кота {masha.mom_pet_cat} раз, убиралась в доме {masha.mom_cleans} раз,'
+      f' отдыхала {masha.mom_rest} раз, купила {masha.mom_coats} пальто\n'
+      f'Кот Мурзик за год:\n'
+      f'Ел {murzik.cat_eat} раз, драл обои {murzik.cat_play} раз, спал {murzik.cat_sleep} раз\n'
+      f'Кот Дымок за год:\n'
+      f'Ел {dimok.cat_eat} раз, драл обои {dimok.cat_play} раз, спал {dimok.cat_sleep} раз\n'
+      f'Малой за год:\n'
+      f'Ел {kolya.child_eat} раз, спал {kolya.child_sleep} раз')
 
 
 # Усложненное задание (делать по желанию)
