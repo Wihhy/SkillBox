@@ -20,8 +20,20 @@
 #
 # Упорядочивание по частоте - по убыванию. Ширину таблицы подберите по своему вкусу
 # Требования к коду: он должен быть готовым к расширению функциональности. Делать сразу на классах.
+from pprint import pprint
 
-# TODO здесь ваш код
+stat = {}
+char = 'а'
+with open('voyna-i-mir.txt', mode='r', encoding='cp1251') as text:
+    for line in text:
+        for char in line:
+            if char.isalpha():
+                if char in stat:
+                    stat[char] += 1
+                else:
+                    stat[char] = 1
+
+pprint(stat)
 
 # После выполнения первого этапа нужно сделать упорядочивание статистики
 #  - по частоте по возрастанию
