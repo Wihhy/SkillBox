@@ -18,9 +18,18 @@
 #
 # Входные параметры: файл для анализа, файл результата
 # Требования к коду: он должен быть готовым к расширению функциональности. Делать сразу на классах.
+from pprint import pprint
 
-# TODO здесь ваш код
-
+stat = {}
+minutes = 0
+with open('events.txt', encoding='utf8', mode='r') as file:
+    for line in file:
+        minutes = line[15:17]
+        if line[15:17] in stat:
+            stat[minutes] += 1
+        else:
+            stat[minutes] = 1
+    pprint(stat)
 # После выполнения первого этапа нужно сделать группировку событий
 #  - по часам
 #  - по месяцу
