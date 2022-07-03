@@ -18,18 +18,34 @@
 #
 # Входные параметры: файл для анализа, файл результата
 # Требования к коду: он должен быть готовым к расширению функциональности. Делать сразу на классах.
-from pprint import pprint
 
-stat = {}
-minutes = 0
-with open('events.txt', encoding='utf8', mode='r') as file:
-    for line in file:
-        minutes = line[15:17]
-        if line[15:17] in stat:
-            stat[minutes] += 1
-        else:
-            stat[minutes] = 1
-    pprint(stat)
+
+class LogParser:
+
+    def __init__(self, file_for_pars_name):
+        self.file_name = file_for_pars_name
+        self.stat = {}
+
+    def pars(self):
+        with open(self.file_name, encoding='utf8', mode='r') as file:
+            for line in file:
+                if 'NOK' in line:
+                    event_time = line[1:17]
+                    if event_time in self.stat:
+                        self.stat[event_time] += 1
+                    else:
+                        self.stat[event_time] = 1
+
+    def get_out_TXT(self, file_for_out_name):
+        with open(file=file_for_out_name, encoding='utf8', mode='w') as file:
+            for i in self.stat:
+                file.writelines(f'[{i}] {self.stat[i]}\n')
+
+
+parser = LogParser(file_for_pars_name='events.txt')
+parser.pars()
+parser.get_out_TXT(file_for_out_name='out.txt')
+
 # После выполнения первого этапа нужно сделать группировку событий
 #  - по часам
 #  - по месяцу
