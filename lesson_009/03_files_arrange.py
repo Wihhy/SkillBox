@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-
-import os, time, shutil
+import zipfile
+import os
+import shutil
+import time
 
 # Нужно написать скрипт для упорядочивания фотографий (вообще любых файлов)
 # Скрипт должен разложить файлы из одной папки по годам и месяцам в другую.
@@ -34,9 +36,52 @@ import os, time, shutil
 # Чтение документации/гугла по функциям - приветствуется. Как и поиск альтернативных вариантов :)
 # Требования к коду: он должен быть готовым к расширению функциональности. Делать сразу на классах.
 
-# TODO здесь ваш код
+path = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\icons')
+destination = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\Here\\')
+years = []
+months = []
+for dirpath, dirnames, filenames in os.walk(path):
+    for file in filenames:
+        full_path = os.path.join(dirpath, file)
+        file_time = time.gmtime(os.path.getmtime(filename=full_path))
+        # print(dirpath, file, file_time, sep='\n')
+        # shutil.move(src=full_path, dst=destination)
+        years.append(file_time[0])
+        months.append(file_time[1])
+
+years_set = set(years)
+months_set = set(months)
+for year in years_set:
+    if not os.path.exists(f'{destination}\\{year}'):
+        os.mkdir(f'{destination}\\{year}')
+
+    for month in months_set:
+        if not os.path.exists(f'{destination}\\{year}\\{month}'):
+            os.mkdir(f'{destination}\\{year}\\{month}')
+
+
+print(f'{years}\n{years_set}\n{months}\n{months_set}')
 
 # Усложненное задание (делать по желанию)
 # Нужно обрабатывать zip-файл, содержащий фотографии, без предварительного извлечения файлов в папку.
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
+
+# path = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\icons.zip')
+# destination = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\Here')
+# archive = zipfile.ZipFile(file=path, mode='r')
+# years = []
+# months = []
+# for dirpath, dirnames, filenames in os.walk(path):
+#     for file in filenames:
+#         full_path = os.path.join(dirpath, file)
+#         file_time = time.gmtime(os.path.getatime(filename=full_path))
+#         # print(dirpath, file, file_time, sep='\n')
+#         # shutil.move(src=full_path, dst=destination)
+#         years.append(file_time[0])
+#         months.append(file_time[1])
+#         # os.mkdir()
+#
+# years_set = set(years)
+# months_set = set(months)
+# print(f'{years}\n{years_set}\n{months}\n{months_set}')
