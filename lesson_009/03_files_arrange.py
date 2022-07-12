@@ -2,7 +2,7 @@
 import zipfile
 import os
 import shutil
-import time
+import datetime
 
 # Нужно написать скрипт для упорядочивания фотографий (вообще любых файлов)
 # Скрипт должен разложить файлы из одной папки по годам и месяцам в другую.
@@ -43,7 +43,7 @@ months = []
 for dirpath, dirnames, filenames in os.walk(path):
     for file in filenames:
         full_path = os.path.join(dirpath, file)
-        file_time = time.gmtime(os.path.getmtime(filename=full_path))
+        file_time = datetime.datetime(os.path.getmtime(filename=full_path))
         # print(dirpath, file, file_time, sep='\n')
         # shutil.move(src=full_path, dst=destination)
         years.append(file_time[0])
@@ -67,21 +67,36 @@ print(f'{years}\n{years_set}\n{months}\n{months_set}')
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
 
-# path = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\icons.zip')
-# destination = os.path.normpath('E:\\PyCharm Projects\\course\\lesson_009\\Here')
-# archive = zipfile.ZipFile(file=path, mode='r')
-# years = []
-# months = []
-# for dirpath, dirnames, filenames in os.walk(path):
-#     for file in filenames:
-#         full_path = os.path.join(dirpath, file)
-#         file_time = time.gmtime(os.path.getatime(filename=full_path))
-#         # print(dirpath, file, file_time, sep='\n')
-#         # shutil.move(src=full_path, dst=destination)
-#         years.append(file_time[0])
-#         months.append(file_time[1])
-#         # os.mkdir()
+# class ZipOperations:
+#     __name = None
 #
-# years_set = set(years)
-# months_set = set(months)
-# print(f'{years}\n{years_set}\n{months}\n{months_set}')
+#     def __init__(self, file_name, output_path):
+#         self.set_file_name(file_name)
+#         self.copy_files_from_zip(output_path)
+#         self.read_file = None
+#
+#     def set_file_name(self, file_name):
+#         self.__name = file_name
+#
+#     def get_file_name(self):
+#         return self.__name
+#
+#     def zip_file(self):
+#         return zipfile.ZipFile(self.get_file_name(), mode='r')
+#
+#     def copy_files_from_zip(self, output_path):
+#
+#         with self.zip_file() as zf:
+#             for file in zf.infolist():
+#                 path = zipfile.Path(zf, file.filename)
+#                 if path.is_file():
+#                     date = datetime.datetime(*file.date_time)
+#                     output_dir = os.path.join(output_path, str(date.year), str(date.month))
+#                     output_file_name = os.path.join(output_dir, path.name)
+#                     if not os.path.exists(output_dir):
+#                         os.makedirs(output_dir)
+#                     with open(output_file_name, 'wb') as f:
+#                         f.write(path.read_bytes())
+#
+#
+# Open_file = ZipOperations(file_name='icons.zip', output_path='Result')
