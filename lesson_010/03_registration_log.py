@@ -22,4 +22,57 @@
 # - поле возраст НЕ является числом от 10 до 99: ValueError
 # Вызов метода обернуть в try-except.
 
-# TODO здесь ваш код
+
+class NotNameError(Exception):
+
+    def __init__(self, *args):
+        pass
+
+
+class NotEmailError(Exception):
+
+    def __init__(self, *args):
+        pass
+
+
+class RegistrationLogParser:
+
+    def __init__(self, file_name):
+        self.file_name = file_name
+
+    def parser(self):
+        with open(file=self.file_name, mode='r', encoding='utf8') as log:
+            for line in log:
+                try:
+                    name, email, age = line[:-1].split(' ')
+                    with open(file='registrations_good.log', mode='a', encoding='utf8') as file_log:
+                        if name.isalpha():
+                            if '@' and '.' in email:
+                                if int(age) in range(10, 100):
+                                    file_log.write(line)
+                                else:
+                                    raise ValueError(f'Неправильный возраст!')
+                            else:
+                                raise NotEmailError(f'Неправильный E-mail!')
+                        else:
+                            raise NotNameError(f'Имя должно состоять только из букв!')
+                except ValueError as exc:
+                    with open(file='registrations_bad.log', mode='a', encoding='utf8') as bad_line:
+                        bad_line.write(f'В строке "{line[:-1]}" {exc.args[0]}\n')
+                        continue
+                except NotEmailError as exc:
+                    with open(file='registrations_bad.log', mode='a', encoding='utf8') as bad_line:
+                        bad_line.write(f'В строке "{line[:-1]}" {exc.args[0]}\n')
+                        continue
+                except NotNameError as exc:
+                    with open(file='registrations_bad.log', mode='a', encoding='utf8') as bad_line:
+                        bad_line.write(f'В строке "{line[:-1]}" {exc.args[0]}\n')
+                        continue
+                except Exception as exc:
+                    with open(file='registrations_bad.log', mode='a', encoding='utf8') as bad_line:
+                        bad_line.write(f'В строке "{line[:-1]}" что-то совсем плохо!\n')
+                        continue
+
+
+parser = RegistrationLogParser(file_name='registrations.txt')
+parser.parser()
