@@ -18,7 +18,6 @@ def get_polygon(n):
         angle_value = 360 / n
         for cycle in range(n):
             v1 = sd.get_vector(start_point=start_point, angle=angle, length=side_length, width=1)
-            point = v1.end_point
             angle += angle_value
             sd.line(start_point=v1.start_point, end_point=v1.end_point, width=4)
             v1.draw()

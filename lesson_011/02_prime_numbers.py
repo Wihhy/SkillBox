@@ -21,31 +21,35 @@
 # который выдает последовательность простых чисел до n
 #
 # Распечатать все простые числа до 10000 в столбик
+from pprint import pprint
 
 
 class PrimeNumbers:
 
     def __init__(self, n):
         self.n = n
+        self.prime_numbers = []
 
     def __iter__(self):
         self.i = 0
         return self
 
     def __next__(self):
-        for i in self.get_prime_numbers():
-            print(f'{i}')
+        list = self.get_prime_numbers()
+        for i in list:
+            # print(f'{i}')
+            print(i)
         raise StopIteration
 
     def get_prime_numbers(self):
-        prime_numbers = []
+        self.prime_numbers = []
         for number in range(2, self.n + 1):
-            for prime in prime_numbers:
+            for prime in self.prime_numbers:
                 if number % prime == 0:
                     break
             else:
-                prime_numbers.append(number)
-        return prime_numbers
+                self.prime_numbers.append(number)
+        return self.prime_numbers
 
 
 prime_number_iterator = PrimeNumbers(n=10000)
@@ -59,13 +63,13 @@ for guessed_number in prime_number_iterator:
 # Распечатать все простые числа до 10000 в столбик
 
 
-def prime_numbers_generator(n):
-    pass
-    # TODO здесь ваш код
-
-
-for guessed_number in prime_numbers_generator(n=10000):
-    print(guessed_number)
+# def prime_numbers_generator(n):
+#     pass
+#     # TODO здесь ваш код
+#
+#
+# for guessed_number in prime_numbers_generator(n=10000):
+#     print(guessed_number)
 
 
 # Часть 3
