@@ -23,14 +23,17 @@ class LogParser:
         self.stat = {}
 
     def __iter__(self):
-        self.i = 0
+        self.pars()
         return self
 
     def __next__(self):
-        self.i += 1
-        if self.i > 10:
-            raise StopIteration
-        return self.stat
+        for key, value in self.stat.items():
+            self.stat.pop(key)
+
+            if self.stat == {}:
+                raise StopIteration
+
+            return key, value
 
     def pars(self):
         with open(self.file_name, encoding='utf8', mode='r') as file:
@@ -50,11 +53,9 @@ class LogParser:
 
 
 parser = LogParser(file_for_pars_name='events.txt')
-parser.pars()
-with open(file='out.txt', encoding='utf8', mode='a') as file:
-    for list in parser:
-        for time in list:
-            pprint(time)
-        # pprint(time)
-        # file.writelines(f'[{time}] {event}\n')
+for time, event in parser:
+    print(f'{[time]} -> {event}')
+
+# pprint(time)
+# file.writelines(f'[{time}] {event}\n')
 # parser.get_out_TXT(file_for_out_name='out.txt')
