@@ -9,8 +9,18 @@
 
 
 def log_errors(func):
-    pass
-    # TODO здесь ваш код
+    def function(*args, **kwargs):
+        try:
+            func(*args, **kwargs)
+        except ValueError as exc:
+            with open(file='function_errors.log', mode='a', encoding='utf8') as log:
+                log.write(f'Ошибка в функции: {func.__name__}, с параметрами вызова: {type(exc).__name__}, '
+                          f'тип ошибки: {exc.args}, текст ошибки:{exc.args[0]}\n')
+        except ZeroDivisionError as exc:
+            with open(file='function_errors.log', mode='a', encoding='utf8') as log:
+                log.write(f'Ошибка в функции: {func.__name__}, с параметрами вызова: {type(exc).__name__}, '
+                          f'тип ошибки: {exc.args}, текст ошибки:{exc.args[0]}\n')
+    return function
 
 
 # Проверить работу на следующих функциях
@@ -45,11 +55,9 @@ for line in lines:
         print(f'Invalid format: {exc}')
 perky(param=42)
 
-
 # Усложненное задание (делать по желанию).
 # Написать декоратор с параметром - именем файла
 #
 # @log_errors('function_errors.log')
 # def func():
 #     pass
-
